@@ -21,17 +21,17 @@ print(f"2. 음성 클래스 중심점 n = {mu_negative}")
 print(f"3. 방향 벡터 w = p - n = {mu_positive} - {mu_negative} = {w}")
 print(f"4. 중점 M = (p + n)/2 = ({mu_positive} + {mu_negative})/2 = {midpoint}")
 
-# 결정 경계 오프셋 계산: t = (p-n)⋅(p+n)/2 = (||p||² - ||n||²)/2 = w⋅midpoint
+# 결정 경계 오프셋 계산: t = (p-n).(p+n)/2 = (||p||² - ||n||²)/2 = w.midpoint
 p_norm_squared = np.dot(mu_positive, mu_positive)
 n_norm_squared = np.dot(mu_negative, mu_negative)
 t_from_norms = (p_norm_squared - n_norm_squared) / 2
 t = np.dot(w, midpoint)
 
-print(f"5. 오프셋 t 계산 방법 1: w⋅midpoint = ({w[0]}*{midpoint[0]} + {w[1]}*{midpoint[1]}) = {t}")
-print(f"6. 오프셋 t 계산 방법 2: (||p||² - ||n||²)/2 = ({p_norm_squared} - {n_norm_squared})/2 = {t_from_norms}")
-print(f"   (두 방법의 결과가 같은 것을 확인할 수 있습니다: {t} ≈ {t_from_norms})")
+print(f"5. 오프셋 t 계산 방법 1: w.midpoint = ({w[0]}*{midpoint[0]} + {w[1]}*{midpoint[1]}) = {t}")
+print(f"6. 오프셋 t 계산 방법 2: (||p||^2 - ||n||^2)/2 = ({p_norm_squared} - {n_norm_squared})/2 = {t_from_norms}")
+print(f"   (두 방법의 결과가 같은 것을 확인할 수 있습니다: {t} = {t_from_norms})")
 
-# 결정 방정식 구성: w⋅x = t, 즉 w[0]*x + w[1]*y = t
+# 결정 방정식 구성: w.x = t, 즉 w[0]*x + w[1]*y = t
 decision_equation = f"{w[0]:.2f}x + {w[1]:.2f}y = {t:.2f}"
 print(f"7. 결정 방정식: {decision_equation}")
 print("======================================")
@@ -51,11 +51,11 @@ print("\n각 점에 대한 결정 값 및 오류 여부:")
 # Positive 포인트 분류 오류 확인
 for point in positive_points:
     x, y = point
-    # 결정 값 계산: w⋅x > t
+    # 결정 값 계산: w.x > t
     decision_value = np.dot(w, point) - t
     
     # 사칙연산 과정 출력
-    calculation = f"Positive Point ({x}, {y}): w⋅x - t = ({w[0]}*{x} + {w[1]}*{y}) - {t} = {decision_value}"
+    calculation = f"Positive Point ({x}, {y}): w.x - t = ({w[0]}*{x} + {w[1]}*{y}) - {t} = {decision_value}"
     print(calculation)
     
     if decision_value <= 0:  # Positive 포인트가 negative로 분류되는 경우
@@ -67,11 +67,11 @@ for point in positive_points:
 # Negative 포인트 분류 오류 확인
 for point in negative_points:
     x, y = point
-    # 결정 값 계산: w⋅x > t
+    # 결정 값 계산: w.x > t
     decision_value = np.dot(w, point) - t
     
     # 사칙연산 과정 출력
-    calculation = f"Negative Point ({x}, {y}): w⋅x - t = ({w[0]}*{x} + {w[1]}*{y}) - {t} = {decision_value}"
+    calculation = f"Negative Point ({x}, {y}): w.x - t = ({w[0]}*{x} + {w[1]}*{y}) - {t} = {decision_value}"
     print(calculation)
     
     if decision_value > 0:  # Negative 포인트가 positive로 분류되는 경우
@@ -88,30 +88,53 @@ print(f"오류율: {error_rate:.2%}")
 # 1-NN (가장 가까운 이웃)에 의한 테스트 데이터 (-1, 1) 분류
 print("\n========= 1-NN 분류 (k=1) =========")
 test_point = np.array([-1, 1])
+print(f"테스트 포인트: ({test_point[0]}, {test_point[1]})")
+print("\n1-NN 거리 계산식: sqrt[(x1-x2)^2 + (y1-y2)^2]\n")
 
 # 모든 훈련 데이터 포인트와의 거리 계산
 distances_positive = []
 for point in positive_points:
-    dist = np.sqrt(np.sum((point - test_point)**2))
+    x, y = point
+    # 유클리드 거리 계산 과정 출력
+    dx = point[0] - test_point[0]
+    dy = point[1] - test_point[1]
+    dx_squared = dx ** 2
+    dy_squared = dy ** 2
+    dist = np.sqrt(dx_squared + dy_squared)
+    
+    calculation = f"Positive Point ({x}, {y}) 거리 계산: ({x}-{test_point[0]})^2 + ({y}-{test_point[1]})^2 = {dx_squared + dy_squared}, sqrt({dx_squared + dy_squared}) = {dist:.4f}"
+    print(calculation)
+    
     distances_positive.append((dist, 'positive', point))
 
 distances_negative = []
 for point in negative_points:
-    dist = np.sqrt(np.sum((point - test_point)**2))
+    x, y = point
+    # 유클리드 거리 계산 과정 출력
+    dx = point[0] - test_point[0]
+    dy = point[1] - test_point[1]
+    dx_squared = dx ** 2
+    dy_squared = dy ** 2
+    dist = np.sqrt(dx_squared + dy_squared)
+    
+    calculation = f"Negative Point ({x}, {y}) 거리 계산: ({x}-{test_point[0]})^2 + ({y}-{test_point[1]})^2 = {dx_squared + dy_squared}, sqrt({dx_squared + dy_squared}) = {dist:.4f}"
+
+    print(calculation)
+    
     distances_negative.append((dist, 'negative', point))
 
 # 모든 거리 병합 및 정렬
 all_distances = distances_positive + distances_negative
 all_distances.sort(key=lambda x: x[0])  # 거리에 따라 정렬
 
+# 거리 순위 요약 출력
+print("\n모든 데이터 포인트 거리 순위:")
+for i, (dist, cls, point) in enumerate(all_distances, 1):
+    print(f"  {i}위: {cls} 포인트 {point}, 거리: {dist:.4f}")
+
 # 가장 가까운 이웃 찾기 (k=1)
 nearest_neighbor = all_distances[0]
 nearest_distance, nearest_class, nearest_point = nearest_neighbor
-
-print(f"테스트 포인트: ({test_point[0]}, {test_point[1]})")
-print("각 훈련 데이터와의 거리:")
-for dist, cls, point in all_distances:
-    print(f"  {cls} 포인트 {point}와의 거리: {dist:.4f}")
 
 print(f"\n1-NN 결과: 테스트 포인트 ({test_point[0]}, {test_point[1]})은(는) {nearest_class} 클래스로 분류됩니다.")
 print(f"가장 가까운 이웃: {nearest_point}, 거리: {nearest_distance:.4f}")
