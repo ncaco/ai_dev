@@ -88,11 +88,11 @@ def visualize_kernel_trick():
     # 뷰 각도 조정
     ax.view_init(elev=20, azim=30)
     
-    # 변환된 데이터 플롯
+    # 변환된 데이터 플롯 (범례 없이)
     ax.scatter(X_transformed_class0[:, 0], X_transformed_class0[:, 1], X_transformed_class0[:, 2], 
-              c='w', edgecolor='black', marker='o', s=40, label='Class 0')
+              c='w', edgecolor='black', marker='o', s=40)
     ax.scatter(X_transformed_class1[:, 0], X_transformed_class1[:, 1], X_transformed_class1[:, 2], 
-              c='black', marker='o', s=40, label='Class 1')
+              c='black', marker='o', s=40)
     
     # 평면 경계 추가
     draw_plane(ax)
@@ -115,9 +115,6 @@ def visualize_kernel_trick():
     
     # 배경색 설정
     ax.set_facecolor('white')
-    
-    # 범례 제거 (슬라이드와 맞춤)
-    ax.get_legend().remove()
     
     # 타이틀 제거 (슬라이드와 맞춤)
     ax.set_title('')
