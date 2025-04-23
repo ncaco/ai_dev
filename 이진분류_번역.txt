@@ -1,0 +1,20 @@
+1. Binary Classification and Scoring and Ranking (7)
+ | 1. 이진 분류 및 점수 매기기 및 순위 매기기 (7)
+
+The leftmost figure below show a linear classifier, where ● and ○ indicate positive examples and negative examples, respectively. Answer the following questions.
+ | 가장 왼쪽 그림은 선형 분류기를 보여주며, 여기서 ●와 ○는 각각 긍정적인 예와 부정적인 예를 나타냅니다. 다음 질문에 답하십시오.
+
+1-1. Draw the coverage curve and ROC curve for this linear classifier when the instances are ranked based on the distances from the decision boundary.
+ | 1-1. 결정 경계에서의 거리 기반으로 인스턴스가 정렬될 때, 이 선형 분류기에 대한 커버리지 곡선과 ROC 곡선을 그리십시오.
+
+1-2. What is the range of the cost ratio c = c_FN/c_FP, within which the decision boundary shown by the solid line in the leftmost figure above remains as the best classification boundary?
+ | 1-2. 위의 가장 왼쪽 그림에서 고체 선으로 표시된 결정 경계가 최상의 분류 경계로 남아 있는 비용 비율 c = c_FN/c_FP의 범위는 무엇입니까?
+
+1-3. Suppose that the ratio of the positive to negative examples in a new test set turns out to be 2:1. Assuming that c_FN = c_FP, what would be the slope of the isometric in the ROC plot for this test set?
+ | 1-3. 새로운 테스트 세트에서 긍정적인 예와 부정적인 예의 비율이 2:1로 나타난다고 가정합니다. c_FN = c_FP일 때, 이 테스트 세트의 ROC 플롯에서 등각선의 기울기는 무엇입니까?
+
+1-4. Draw, directly in the leftmost figure above, the best decision boundary determined by this isometric. What accuracy does this boundary achieve?
+ | 1-4. 위의 가장 왼쪽 그림에 직접 이 등각선에 의해 결정된 최상의 결정 경계를 그리십시오. 이 경계가 달성하는 정확도는 무엇입니까?
+
+1-5. We can turn the above linear classifier in to a grouping model by dividing the instance space and not distinguishing the instances within the same subdivision. What would be the best subdivision of the instance space achieving the highest ranking accuracy? What is that ranking accuracy?
+ | 1-5. 위의 선형 분류기를 인스턴스 공간을 나누어 그룹화 모델로 전환할 수 있습니다. 같은 세분화 내에서 인스턴스를 구분하지 않습니다. 가장 높은 순위 정확도를 달성하는 인스턴스 공간의 최적 세분화는 무엇입니까? 그리고 그 순위 정확도는 무엇입니까? 
