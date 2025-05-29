@@ -89,9 +89,20 @@ $$
 - $x=0$일 때 $\sigma(0)=0.5$ (중간값)
 - $x \gg 0$이면 $\sigma(x) \approx 1$
 - $x \ll 0$이면 $\sigma(x) \approx 0$
+---
 
-#### 파이썬 예시
+### 우도함수(Likelihood)
+- 확률을 최대화 해라.
+- 참일 확률, 거짓일 확률.
+- 레이블 넣어서 컨트롤함.
+- 확률이 가장 높아지는 쪽으로 이동함.
+- 결과에 - 붙이면 교차 엔트로피 
+- BCE, Binary Cross Entropic
 
+### 멀티 클래스로 하려면
+ - 멀티 리스폰스 : 해당 클래스가 아닌것을 구분하는 선을 그림
+ - soft max (reqression) : a > b * 1/(a+b) * a, b
+ - hard max (reqression) : a > b * 1, 0
 
-
-
+### 서포트 벡터 머신 Maximum Margin Separator
+ - 힌지로스
