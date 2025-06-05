@@ -105,4 +105,4 @@ $$
  - hard max (reqression) : a > b * 1, 0
 
 ### 서포트 벡터 머신 Maximum Margin Separator
- - 힌지로스
+ - 힌지로스 
