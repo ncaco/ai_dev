@@ -41,3 +41,5 @@
 
 - McCulloch, W. S., & Pitts, W. (1943). "A logical calculus of the ideas immanent in nervous activity."
 - 실제 신경망 구현 시에는 다양한 활성화 함수와 가중치 조정 방법이 사용됩니다.
+
+
